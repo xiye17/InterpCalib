@@ -12,7 +12,6 @@ if [ "$ACTION" = "train" ]; then
     cp run_qa.sh "${exp_prefix}/run_qa.sh"
 
     if [ "$dataset" = "hpqa" ]; then
-        CUDA_VISIBLE_DEVICES=1,2,3 \
         python -u run_qa.py \
             --model_type roberta \
             --model_name_or_path roberta-base \
@@ -36,7 +35,6 @@ if [ "$ACTION" = "train" ]; then
             --per_gpu_train_batch_size 8 \
             --per_gpu_eval_batch_size 8 2>&1 | tee "${exp_prefix}log.txt"
     elif [ "$dataset" = "squad" ]; then
-        CUDA_VISIBLE_DEVICES=0,1,2,3 \
         python -u run_qa.py \
             --model_type roberta \
             --model_name_or_path roberta-base \
@@ -60,7 +58,6 @@ if [ "$ACTION" = "train" ]; then
             --per_gpu_train_batch_size 8 \
             --per_gpu_eval_batch_size 8 2>&1 | tee "${exp_prefix}log.txt"
     elif [ "$dataset" = "trivia" ]; then
-        CUDA_VISIBLE_DEVICES=2,3 \
         python -u run_qa.py \
             --model_type roberta \
             --model_name_or_path roberta-base \
@@ -116,9 +113,7 @@ if [ "$ACTION" = "train" ]; then
 elif [ "$ACTION" = "eval" ]; then
     dataset=$2
     split=${3:-dev}
-    DEVICES=${4:-0}
 
-    CUDA_VISIBLE_DEVICES=$DEVICES \
     python -u run_qa.py \
         --model_type roberta \
         --model_name_or_path checkpoints/squad_roberta-base \
