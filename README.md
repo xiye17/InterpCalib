@@ -17,6 +17,7 @@ The codebase is tested under
 * python==3.8
 * pytorch==1.6.0
 * transformers==3.3.1
+* spacy==2.3.2
 
 ## Experiments on QA
 Please refer to the `README` in the `\QA` directory. 
