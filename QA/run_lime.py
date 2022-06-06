@@ -47,8 +47,7 @@ from data.custom_squad_feature import custom_squad_convert_examples_to_features,
 
 from data.qa_metrics import (compute_predictions_logits,hotpot_evaluate,)
 
-from run_qa import load_and_cache_examples, set_seed, to_list
-from run_probe import remove_padding
+from run_qa import load_and_cache_examples, set_seed, to_list, merge_predictions, remove_padding
 from probe.probe_models import ProbeRobertaForQuestionAnswering
 from probe.probe_utils import stats_of_layer_attribution, get_link_mask_by_thresholds, get_link_mask_by_token_thresholds
 from int_grad.ig_qa_utils import compute_predictions_index_and_logits
@@ -63,7 +62,6 @@ MODEL_TYPES = tuple(conf.model_type for conf in MODEL_CONFIG_CLASSES)
 
 import itertools
 from functools import reduce, partial
-from run_int_grad import merge_predictions
 from shap.local_method_utils import run_lime_attribution
 
 

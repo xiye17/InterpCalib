@@ -9,7 +9,6 @@ import os
 from os.path import join
 import shutil
 import string
-from synth.tokenizer_synth import SimBertTokenizer
 from transformers import RobertaTokenizer
 
 from .vis_attention import visualize_connection, merge_attention_by_segments

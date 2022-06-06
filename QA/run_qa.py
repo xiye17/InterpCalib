@@ -41,6 +41,7 @@ from transformers import (
 from data.custom_squad_feature import custom_squad_convert_examples_to_features,  SquadResult, SquadProcessor
 
 from data.qa_metrics import (compute_predictions_logits,hotpot_evaluate,)
+from itertools import chain
 
 logger = logging.getLogger(__name__)
 
@@ -55,10 +56,15 @@ def set_seed(args):
     if args.n_gpu > 0:
         torch.cuda.manual_seed_all(args.seed)
 
-
 def to_list(tensor):
     return tensor.detach().cpu().tolist()
 
+def merge_predictions(dicts):
+    return dict(chain(*[list(x.items()) for x in dicts]))
+
+def remove_padding(batch, feature):    
+    new_batch = tuple(x[:,:len(feature.tokens)] for x in batch[:3]) + (batch[3],)
+    return new_batch
 
 def train(args, train_dataset, model, tokenizer):
 

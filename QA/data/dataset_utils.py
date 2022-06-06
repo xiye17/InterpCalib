@@ -1,4 +1,3 @@
-from synth.tokenizer_synth import SimBertTokenizer
 from transformers import RobertaTokenizer
 import string
 
@@ -68,13 +67,6 @@ def _merge_roberta_tokens_into_words(tokenizer, feature):
     
     return merged_tokens, segments
 
-def _merge_simple_tokens_into_words(tokenizer, feature):
-    tokens = feature.tokens
-    segments = [(i,i+1) for i in range(len(tokens))]
-    return tokens, segments
-
 def merge_tokens_into_words(tokenizer, feature):
-    if isinstance(tokenizer, SimBertTokenizer):
-        return _merge_simple_tokens_into_words(tokenizer, feature)
-    elif isinstance(tokenizer, RobertaTokenizer):
+    if isinstance(tokenizer, RobertaTokenizer):
         return _merge_roberta_tokens_into_words(tokenizer, feature)
