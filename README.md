@@ -19,6 +19,8 @@ The codebase is tested under
 * transformers==3.3.1
 * spacy==2.3.2
 
+For a detailed list of dependency, check `requirement.txt`
+
 ## Experiments on QA
 Please refer to the `README` in the `\QA` directory. 
 
