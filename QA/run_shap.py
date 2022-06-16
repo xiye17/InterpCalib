@@ -180,8 +180,10 @@ def shap_interp(args, model, tokenizer, prefix=""):
     all_predictions = []
     start_time = timeit.default_timer()
 
-    for batch in tqdm(eval_dataloader, desc="Evaluating"):
-       
+    for idx, batch in tqdm(enumerate(eval_dataloader), desc="Interpreting", total=min(len(dataset), args.first_n_samples)):
+        if idx == args.first_n_samples:
+            break
+
         feature_indices = to_list(batch[3])
         batch_features = [features[i] for i in feature_indices]
         batch_examples = [examples[i] for i in feature_indices]
@@ -250,6 +252,7 @@ def main():
     parser = argparse.ArgumentParser()
     register_args(parser)
 
+    parser.add_argument("--first_n_samples", default=4000, type=int, help="getting interpretation for first n sample")
     parser.add_argument("--do_vis", action="store_true", help="Whether to run vis on the dev set.")
     parser.add_argument("--interp_dir",default=None,type=str,required=True,help="The output directory where the model checkpoints and predictions will be written.")
     parser.add_argument("--visual_dir",default=None,type=str,help="The output visualization dir.")
