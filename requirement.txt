@@ -1,0 +1,9 @@
+transformers==3.3.1
+spacy==2.3.2
+pytorch==1.6.0
+colour==0.1.5
+scikit-learn==1.1.1
+scipy==1.8.1
+sklearn==0.0
+tqdm==4.64.0
+Pillow==9.1.1
