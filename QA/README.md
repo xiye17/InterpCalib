@@ -43,5 +43,4 @@ Please copy the nbest predictions at `predictions/squad/nbest_predictions_.json`
 
 See examples in `exp_scripts/run_main_exp.sh`.
 
-If you want to run it, put `run_main_exp.sh` under this directory.
-
+`sh exp_scripts/run_main_exp.sh`

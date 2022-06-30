@@ -40,8 +40,6 @@ if [ "$ACTION" = "train" ]; then
 elif [ "$ACTION" = "eval" ]; then
     dataset=$2
     split=${3:-dev}
-    devices=${4:-0}
-    CUDA_VISIBLE_DEVICES=${devices} \
     python -u run_nli.py \
         --model_type roberta \
         --model_name_or_path checkpoints/${dataset}_roberta-base \
