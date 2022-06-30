@@ -1,4 +1,4 @@
-# Calibrating Black-Box QA Models
+# Calibrating Black-Box NLI Models
 
 ## Dependency and Project Structure
 1. First make sure to install the dependency (as specified in `requirement.txt`) in the parent directory.
